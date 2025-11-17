@@ -53,7 +53,7 @@ With this in mind, you can do something like set your hidden service port to 22 
 ```
 # .torrc
 HiddenServiceDir <directory>
-HiddenServicePort 22 127.0.0.1:22
+HiddenServicePort 52040 127.0.0.1:22
 ```
 
 ```

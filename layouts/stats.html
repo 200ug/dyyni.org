@@ -8,6 +8,7 @@
       <li>posts: {{ len $posts }}</li>
       <li>words: {{ $totalWords }}</li>
       <li>avg. readtime: {{ $avgReadTime }} min</li>
+      <li>last update: {{ time.Now | time.Format "Jan 2, 2006" }}</li>
     </ul>
   </div>
 {{ end }}

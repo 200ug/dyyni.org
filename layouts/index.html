@@ -1,3 +1,4 @@
+<!--
 {{ define "main" }}
   <div class="pb-24">
     {{ range (.Site.RegularPages.GroupByDate "2006") }}
@@ -32,3 +33,22 @@
     {{ end }}
   </div>
 {{ end }}
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body class="min-h-screen bg-(--col-bg) text-(--col-text)">
+    <main class="flex flex-col items-center justify-center min-h-screen px-4">
+      <img
+        src="{{ .Site.Params.footerLogo }}"
+        class="w-32 mb-6 brightness-120"
+        alt="Logo" />
+      <p class="text-sm lg:text-base text-center italic max-w-md">
+        {{ .Site.Params.footerText }}
+      </p>
+    </main>
+  </body>
+</html>

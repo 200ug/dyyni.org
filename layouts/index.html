@@ -1,54 +1,30 @@
-<!--
 {{ define "main" }}
-  <div class="pb-24">
-    {{ range (.Site.RegularPages.GroupByDate "2006") }}
-      {{ if ne .Key "0001" }}
-        <div class="mb-12">
-          <h1 class="text-2xl font-bold mb-6">{{ .Key }}</h1>
-          <ul class="space-y-2">
-            {{ range .Pages }}
-              <li class="flex items-baseline group px-2">
-                <a href="{{ .RelPermalink }}" class="truncate pr-2"
-                  >{{ .Title }}</a
-                >
-                <span
-                  class="grow border-b border-dotted border-black mx-2"></span>
-                {{ $day := .Date.Day }}
-                {{ $suffix := "th" }}
-                {{ if or (eq $day 1) (eq $day 21) (eq $day 31) }}
-                  {{ $suffix = "st" }}
-                {{ else if or (eq $day 2) (eq $day 22) }}
-                  {{ $suffix = "nd" }}
-                {{ else if or (eq $day 3) (eq $day 23) }}
-                  {{ $suffix = "rd" }}
-                {{ end }}
-                <span class="whitespace-nowrap pl-2"
-                  >{{ .Date.Format "Jan 2" }}{{ $suffix }}</span
-                >
-              </li>
-            {{ end }}
-          </ul>
-        </div>
+  <header class="pt-8">
+    <div class="flex flex-col mx-auto items-center italic">
+      <img src="{{ .Site.Params.logo }}" class="p-0 w-32" />
+    </div>
+  </header>
+  <div class="pb-24 pt-8">
+    <ul class="mb-2 mx-auto w-fit">
+      {{ range .Site.RegularPages }}
+        {{ $day := .Date.Day }}
+        {{ $suffix := "th" }}
+        {{ if or (eq $day 1) (eq $day 21) (eq $day 31) }}
+          {{ $suffix = "st" }}
+        {{ else if or (eq $day 2) (eq $day 22) }}
+          {{ $suffix = "nd" }}
+        {{ else if or (eq $day 3) (eq $day 23) }}
+          {{ $suffix = "rd" }}
+        {{ end }}
+        <li class="max-w-max">
+          <span class="mr-0"
+            >{{ .Date.Format "Jan 2" }}{{ $suffix }},
+            {{ .Date.Format "2006" }}</span
+          >
+          -
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
       {{ end }}
-    {{ end }}
+    </ul>
   </div>
 {{ end }}
--->
-
-<!doctype html>
-<html lang="en">
-  <head>
-    {{ partial "head.html" . }}
-  </head>
-  <body class="min-h-screen bg-(--col-bg) text-(--col-text)">
-    <main class="flex flex-col items-center justify-center min-h-screen px-4">
-      <img
-        src="{{ .Site.Params.footerLogo }}"
-        class="w-32 mb-6 brightness-120"
-        alt="Logo" />
-      <p class="text-sm lg:text-base text-center italic max-w-md">
-        {{ .Site.Params.footerText }}
-      </p>
-    </main>
-  </body>
-</html>

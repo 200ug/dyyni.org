@@ -1,4 +1,0 @@
----
-title: Connect
-layout: connect
----

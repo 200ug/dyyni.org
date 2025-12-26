@@ -2,8 +2,7 @@ title: dyyni
 
 params:
   projectsLink: https://github.com/200ug/?tab=repositories
-  footerLogo: /images/assets/dune.svg
-  footerText: Where we're going, we don't need roads.
+  logo: /images/assets/dune.svg
 
 markup:
   goldmark:

@@ -4,7 +4,7 @@
       <h1 class="text-3xl lg:text-4xl mb-2">{{ .Title }}</h1>
       {{ if .Date }}
         <time
-          class="text-sm text-gray-600"
+          class="text-sm text-gray-500 lowercase"
           datetime="{{ .Date.Format "2006-01-02" }}">
           {{ .Date.Format "January 2, 2006" }}
         </time>

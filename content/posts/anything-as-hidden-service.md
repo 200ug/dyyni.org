@@ -1,5 +1,5 @@
 ---
-title: "Anything as a hidden service"
+title: "anything as a hidden service"
 date: "2025-11-14T15:01:00+02:00"
 draft: false
 post_number: "003"

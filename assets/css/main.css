@@ -7,10 +7,10 @@
 }
 
 :root {
-  --col-bg: #ffffff;
-  --col-text: #111111;
-  --col-hyper-start: #f6eedf;
-  --col-hyper-end: #f3e1bf;
+  --col-bg: #0000ff;
+  --col-text: #ffffff;
+  --col-hyper-start: #3c2d10;
+  --col-hyper-end: #281e0b;
 }
 
 @layer base {
@@ -109,7 +109,8 @@
     }
 
     code {
-      @apply bg-(--col-text) text-(--col-bg) p-0;
+      /* @apply bg-(--col-text) text-(--col-bg) p-0; */
+      @apply p-0;
     }
 
     p > code,

@@ -42,7 +42,7 @@ To explain the concept, we'll be using following vocabulary (as per the [docs](h
 
 This procedure results in a 6-hop circuit structure:
 
-```
+```text
 client <-> guard <-> middle <-> rendezvous <-> middle <-> entry <-> host
 ```
 
@@ -50,13 +50,13 @@ The key here, considering our goal of being able to accept connections even behi
 
 With this in mind, you can do something like set your hidden service port to 22 (or ideally something arbitrary to decrease the traffic caused by automated scanners), and direct traffic from there to localhost so that the actual SSH server receives it. Then set your local SSH config to always proxy the connection through the Tor daemon, and you're good to go.
 
-```
+```text
 # .torrc
 HiddenServiceDir <directory>
 HiddenServicePort 52040 127.0.0.1:22
 ```
 
-```
+```text
 # .ssh/config
 Host hidden
     HostName example7rmattvz6dev6wr3g5kahgokzdxqnq3vp7hvnwdqzjd7qhsmkqd.onion

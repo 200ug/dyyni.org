@@ -7,10 +7,10 @@
 }
 
 :root {
-  --col-bg: #1a0d00;
+  --col-bg: #00101A;
   --col-text: #ffffff;
-  --col-hyper-start: #b35c00;
-  --col-hyper-end: #281e0b;
+  --col-hyper-start: #68380D;
+  --col-hyper-end: #3D2108;
 }
 
 @layer base {

@@ -29,7 +29,7 @@ jobs:
         run: npm ci
 
       - name: Hugo build
-        run: hugo --minify --gc --baseURL "https://dyyni.org/"
+        run: hugo --minify --gc --baseURL "https://dyyni.org/" && ls -la public
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

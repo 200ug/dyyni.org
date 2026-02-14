@@ -7,8 +7,8 @@
 }
 
 :root {
-  --col-bg: #00101A;
-  --col-text: #ffffff;
+  --col-bg: #140C00; /* 00101A */
+  --col-text: #E3E3E3;
   --col-hyper-start: #68380D;
   --col-hyper-end: #3D2108;
 }

@@ -1,5 +1,5 @@
 ---
-title: "intercepting android's http traffic"
+title: "on the nature of capturing android traffic"
 date: "2026-02-15T11:48:28+02:00"
 draft: false
 post_number: "004"

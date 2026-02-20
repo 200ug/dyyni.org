@@ -1,5 +1,5 @@
 ---
-title: "generating banners with perlin noise"
+title: "Generating banners with Perlin noise"
 date: 2025-06-07T11:42:21+03:00
 draft: false
 post_number: "002"

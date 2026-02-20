@@ -1,5 +1,5 @@
 ---
-title: "websites should be w3m compatible"
+title: "Websites should be w3m compatible"
 date: "2026-01-30T21:48:45+02:00"
 draft: false
 post_number: "004"

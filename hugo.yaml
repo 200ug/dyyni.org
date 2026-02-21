@@ -1,6 +1,7 @@
 title: dyyni
 
 params:
+  favicon: /images/assets/favicon.ico
   projectsLink: https://github.com/200ug/?tab=repositories
   logo: /images/assets/dune.svg
 

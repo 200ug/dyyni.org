@@ -14,7 +14,8 @@
       "options": {
         "useTabs": false,
         "printWidth": 120,
-        "singleQuote": false
+        "singleQuote": false,
+        "semi": false
       }
     }
   ]

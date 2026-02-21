@@ -10,7 +10,6 @@
 
   {{ if .IsPage }}<meta name="description" content="{{ .Summary }}" />{{ end }}
 
-
   <!-- parse the tailwind helper css.html -->
   {{ with (templates.Defer (dict "key" "global")) }}
     {{ partial "css.html" . }}
@@ -39,6 +38,7 @@
     {{ end }}
   </title>
 
+  <!-- primary favicon -->
   <link
     id="favicon"
     rel="shortcut icon"
@@ -52,14 +52,7 @@
     href="{{ $syntaxStyle.Permalink | relURL }}"
     integrity="{{ $syntaxStyle.Data.Integrity }}" />
 
-  <!-- custom icons -->
-  <link
-    rel="icon"
-    type="image/png"
-    href="/images/assets/favicon-96x96.png"
-    sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/images/assets/favicon.svg" />
-  <link rel="shortcut icon" href="/images/assets/favicon.ico" />
+  <!-- mobile icons -->
   <link
     rel="apple-touch-icon"
     sizes="180x180"

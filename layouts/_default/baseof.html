@@ -4,6 +4,9 @@
     {{ partial "head.html" . }}
   </head>
   <body class="min-h-screen bg-(--col-bg) text-(--col-text)">
+    <script>window.matchMedia("(min-width: 800px)").matches&&/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)==!1&&document.addEventListener("DOMContentLoaded",function(){favicons()})</script>
+    <div id="disablejs" onclick="closeDisablejsInfo()"></div>
+
     <main class="max-w-4xl mx-auto px-4 pt-24">
       {{ block "main" . }}{{ end }}
     </main>

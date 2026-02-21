@@ -16,6 +16,16 @@
     {{ partial "css.html" . }}
   {{ end }}
 
+  <!-- very important script -->
+  {{ with resources.Get "js/disablejs.js" }}
+    {{ if hugo.IsDevelopment }}
+      <script src="{{ .RelPermalink }}"></script>
+    {{ else }}
+      {{ with . | minify | fingerprint }}
+        <script src=""></script>
+      {{ end }}
+    {{ end }}
+  {{ end }}
 
   <title>
     {{ if .IsHome }}
@@ -30,6 +40,7 @@
   </title>
 
   <link
+    id="favicon"
     rel="shortcut icon"
     type="image/x-icon"
     href="{{ $.Site.Params.favicon | relURL }}" />

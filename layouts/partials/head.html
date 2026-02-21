@@ -22,7 +22,7 @@
       <script src="{{ .RelPermalink }}"></script>
     {{ else }}
       {{ with . | minify | fingerprint }}
-        <script src=""></script>
+        <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
       {{ end }}
     {{ end }}
   {{ end }}

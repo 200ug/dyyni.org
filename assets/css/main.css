@@ -9,8 +9,8 @@
 :root {
   --col-bg: #0F1214;
   --col-text: #E3E3E3;
-  --col-hyper-start: #68380D;
-  --col-hyper-end: #3D2108;
+  --col-hyper-start: rgba(255, 137, 0, 0.45);
+  --col-hyper-end: rgba(255, 169, 29, 0.1);
 }
 
 @layer base {
@@ -19,7 +19,7 @@
   }
 
   a {
-    @apply bg-linear-to-r from-(--col-hyper-start) to-(--col-hyper-end) bg-no-repeat hover:brightness-98;
+    @apply bg-linear-to-r from-(--col-hyper-start) to-(--col-hyper-end) bg-no-repeat hover:brightness-90;
     background-size: 300% 50%;
     background-position: 0% 100%;
     transition: filter 0.2s ease;

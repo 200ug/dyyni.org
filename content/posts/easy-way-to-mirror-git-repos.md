@@ -1,6 +1,6 @@
 ---
 title: "An easy way to mirror git repositories"
-date: "2026-03-09T22:00:56+02:00"
+date: "2026-03-09T19:00:56+02:00"
 draft: false
 post_number: "006"
 ---

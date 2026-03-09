@@ -52,6 +52,7 @@
       "mb-8",
       "min-h-screen",
       "mr-0",
+      "mt-12",
       "mx-auto",
       "p-0",
       "p-6",
@@ -69,6 +70,7 @@
       "text-center",
       "text-gray-500",
       "text-left",
+      "text-right",
       "text-sm",
       "w-32",
       "w-fit"
@@ -76,6 +78,7 @@
     "ids": [
       "allocating-memory",
       "background-generation",
+      "but-nixos-already-has-a-graphical-installer-right",
       "content-serving",
       "copying-sections",
       "executing-the-payload",
@@ -85,15 +88,20 @@
       "locating-exports",
       "locating-modules",
       "media",
+      "my-reasons-for-trying-out-nixos",
+      "nix-is-an-excellent-middle-ground-between-the-stability-of-debian-and-the-cutting-edge-software-of-arch",
       "obfuscation-and-detection-evasion-techniques",
       "perlin-noise-algorithm",
       "practical-and-not-so-practical-ideas",
       "processing-image-relocations",
       "protecting-the-relocated-sections",
+      "reasons-to-choose-nixos",
       "references",
       "resolving-the-imports",
       "text-overlay-setup",
-      "tldr"
+      "tldr",
+      "whats-llds-and-what-is-it-trying-to-achieve",
+      "why-tinkering-with-your-os-is-more-important-than-ever"
     ]
   }
 }

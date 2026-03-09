@@ -2,7 +2,7 @@
 title: "On the nature of capturing Android traffic"
 date: "2026-02-15T11:48:28+02:00"
 draft: false
-post_number: "004"
+post_number: "005"
 ---
 
 A few days ago I got the idea to do some traffic analysis to determine how an unnamed Android app handles user authentication and chains it to ticket verification. From unpacking the APK, I already found the GraphQL endpoints and some hardcoded basic auth credentials I was after, but didn't know for sure how the values were passed to these endpoints and in what order these endpoints were called in. Thus, I decided to dive deeper by sideloading the app into a rooted emulator (AVD) and intercepting the traffic with a MitM proxy.

@@ -4,6 +4,7 @@ params:
   favicon: /images/assets/favicon.ico
   projectsLink: https://github.com/200ug/?tab=repositories
   logo: /images/assets/dune.png
+  fourfiveone: /images/assets/komfy.png
 
 markup:
   goldmark:

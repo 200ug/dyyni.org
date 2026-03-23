@@ -38,7 +38,6 @@
       "font-bold",
       "gap-8",
       "highlight",
-      "inline-block",
       "italic",
       "items-center",
       "lg:p-8",
@@ -66,17 +65,16 @@
       "px-4",
       "py-16",
       "py-20",
-      "py-8",
       "text-(--col-text)",
       "text-3xl",
       "text-5xl",
       "text-center",
       "text-gray-500",
-      "text-left",
       "text-right",
       "text-sm",
       "w-32",
-      "w-fit"
+      "w-fit",
+      "w-full"
     ],
     "ids": [
       "allocating-memory",

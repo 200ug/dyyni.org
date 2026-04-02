@@ -2,7 +2,6 @@ title: dyyni
 
 params:
   favicon: /images/assets/favicon.ico
-  logo: /images/assets/dune.png
   fourfiveone: /images/assets/komfy.png
 
 markup:

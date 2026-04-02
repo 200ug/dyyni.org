@@ -6,20 +6,10 @@
     <ul class="mb-2">
       {{ range first 6 $posts }}
         {{ $day := .Date.Day }}
-        {{ $suffix := "th" }}
-        {{ if or (eq $day 1) (eq $day 21) (eq $day 31) }}
-          {{ $suffix = "st" }}
-        {{ else if or (eq $day 2) (eq $day 22) }}
-          {{ $suffix = "nd" }}
-        {{ else if or (eq $day 3) (eq $day 23) }}
-          {{ $suffix = "rd" }}
-        {{ end }}
-        <li class="max-w-max">
-          <span class="mr-0"
-            >{{ .Date.Format "Jan 2" }}{{ $suffix }},
-            {{ .Date.Format "2006" }}</span
+        <li class="max-w-max flex">
+          <span class="mr-2 shrink-0"
+            >[{{ .Date.Format "02/01/2006" }}]</span
           >
-          -
           <a href="{{ .RelPermalink }}">{{ .Title }}</a>
         </li>
       {{ end }}

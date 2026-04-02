@@ -1,28 +1,19 @@
 @import "tailwindcss";
 @source "hugo_stats.json";
 
-@font-face {
-  font-family: "src-code-pro";
-  src: url("/fonts/src-code-pro.woff2") format("woff2");
-}
-
 :root {
-  --col-bg: #0F1214;
-  --col-text: #E3E3E3;
-  --col-hyper-start: rgba(255, 137, 0, 0.45);
-  --col-hyper-end: rgba(255, 169, 29, 0.1);
+  --col-bg: #000000;
+  --col-text: #FFFFFF;
+  --col-hyper: #A4C8F4;
 }
 
 @layer base {
   body {
-    font-family: "src-code-pro", serif;
+    @apply font-mono text-sm;
   }
 
   a {
-    @apply bg-linear-to-r from-(--col-hyper-start) to-(--col-hyper-end) bg-no-repeat hover:brightness-90;
-    background-size: 300% 50%;
-    background-position: 0% 100%;
-    transition: filter 0.2s ease;
+    @apply text-(--col-hyper) hover:underline;
   }
 
   .article-content {
@@ -101,7 +92,7 @@
     code,
     samp,
     pre {
-      font-family: "src-code-pro", serif;
+        @apply font-mono text-sm;
     }
 
     pre {
@@ -109,7 +100,6 @@
     }
 
     code {
-      /* @apply bg-(--col-text) text-(--col-bg) p-0; */
       @apply p-0;
     }
 

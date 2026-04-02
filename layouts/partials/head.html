@@ -19,7 +19,11 @@
     {{ if .IsHome }}
       {{ .Site.Title }}/index
     {{ else if eq .Section "posts" }}
-      {{ .Site.Title }}/{{ .Params.post_number }}
+      {{ if .Params.post_number }}
+        {{ .Site.Title }}/{{ .Params.post_number }}
+      {{ else }}
+        {{ .Site.Title }}/posts
+      {{ end }}
     {{ else if eq .Title "404 Page not found" }}
       {{ .Site.Title }}/451
     {{ else }}

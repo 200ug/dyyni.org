@@ -1,29 +1,16 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
-  <div class="py-20">
+  <div class="py-16">
+    {{ $posts := where .Site.RegularPages "Section" "posts" }}
     <ul class="mb-2 mx-auto w-fit">
-      {{ range (.Pages.GroupByDate "2006") }}
-        {{ if ne .Key "0001" }}
-          {{ range .Pages }}
-            {{ $day := .Date.Day }}
-            {{ $suffix := "th" }}
-            {{ if or (eq $day 1) (eq $day 21) (eq $day 31) }}
-              {{ $suffix = "st" }}
-            {{ else if or (eq $day 2) (eq $day 22) }}
-              {{ $suffix = "nd" }}
-            {{ else if or (eq $day 3) (eq $day 23) }}
-              {{ $suffix = "rd" }}
-            {{ end }}
-            <li class="max-w-max">
-              <span class="mr-0"
-                >{{ .Date.Format "Jan 2" }}{{ $suffix }},
-                {{ .Date.Format "2006" }}</span
-              >
-              -
-              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            </li>
-          {{ end }}
-        {{ end }}
+      {{ range $posts }}
+        {{ $day := .Date.Day }}
+        <li class="max-w-max flex">
+          <span class="mr-2 shrink-0"
+            >[{{ .Date.Format "02/01/2006" }}]</span
+          >
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
       {{ end }}
     </ul>
   </div>

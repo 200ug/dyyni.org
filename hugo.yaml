@@ -9,6 +9,8 @@ markup:
     parser:
       attribute:
         block: true
+    renderer:
+      unsafe: true
     extensions:
       typographer: true
   highlight:

@@ -19,6 +19,8 @@ Git as a protocol would support the so-called push-to-create functionality, whic
 2. Get API tokens from the aforementioned platforms, put them into another config file, and encrypt it with your PGP key.
 3. Run `ferne init` or `ferne private` to create a public or a private mirrored repository, respectively.
 
+<img src="/images/posts/easy-way-to-mirror-git-repos/ferne.png" alt="Ferne in action" width="80%" />
+
 In the background, the script will check for naming conflicts, create new repositories on each mirrored platform, and configure the push URLs for local git (by default setting the first mirror as the primary remote). Notably the first two steps only need to be done during the tool setup, after which you can simply run the script during new repository initialization, and use `git push` to automagically push the pending commits to all mirrors without a hassle.
 
 As a side note, nothing forces you to stop at just *one* mirror, you can go as deep as you wish (though you might want to consider that smaller instances don't have as vast resources as GitHub).

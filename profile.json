@@ -1,0 +1,28 @@
+{
+    "name": "hugo-arm64",
+    "description": "dev env for hugo (v0.160.1-arm64)",
+    "shell": "/bin/zsh",
+    "packages": [
+        "ripgrep", "zsh-autosuggestions", "fzf", "tmux", "tree",
+        "nodejs", "npm", "build-essential"
+    ],
+    "installers": [
+        "curl -Lo /tmp/nvim-linux-arm64.tar.gz https://github.com/neovim/neovim/releases/download/v0.12.1/nvim-linux-arm64.tar.gz && tar -xzf /tmp/nvim-linux-arm64.tar.gz -C /tmp && cp -r /tmp/nvim-linux-arm64/* ~/.local/",
+        "curl -Lo /tmp/hugo-arm64.deb https://github.com/gohugoio/hugo/releases/download/v0.160.1/hugo_0.160.1_linux-arm64.deb && sudo apt -y install /tmp/hugo-arm64.deb"
+    ],
+    "dotfiles": [
+        { "src": "~/.config/nvim", "dst": "~/.config/nvim", "exclude": ["plugin"] },
+        { "src": "~/.config/tmux", "dst": "~/.config/tmux" },
+        { "src": "~/.zshrc", "dst": "~/." },
+        { "src": "~/.config/zsh", "dst": "~/.config/zsh" }
+    ],
+    "ports": [
+        { "host": 1313, "container": 1313 }
+    ],
+    "workspace": {
+        "direct_mounts": [".git", ".gitignore", "archetypes", "assets", "content", "functions", "hugo.yaml", "hugo_stats.json", "layouts", "static", "theme.toml", "package.json", "package-lock.json"],
+        "virtual_volumes": [
+            { "path": "/home/dev/dyyni.org/node_modules", "name": "node-modules-cache" }
+        ]
+    }
+}

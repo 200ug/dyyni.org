@@ -14,15 +14,15 @@
         { "src": "~/.config/nvim", "dst": "~/.config/nvim", "exclude": ["plugin"] },
         { "src": "~/.config/tmux", "dst": "~/.config/tmux" },
         { "src": "~/.zshrc", "dst": "~/." },
-        { "src": "~/.config/zsh", "dst": "~/.config/zsh" }
+        { "src": "~/.config/zsh", "dst": "~/.config/zsh" },
+        { "src": "~/.gitconfig", "dst": "~/.gitconfig" },
+        { "src": "~/.config/gitignore", "dst": "~/.config/gitignore" }
     ],
+    "project_mount": true,
     "ports": [
         { "host": 1313, "container": 1313 }
     ],
-    "workspace": {
-        "direct_mounts": [".git", ".gitignore", "archetypes", "assets", "content", "functions", "hugo.yaml", "hugo_stats.json", "layouts", "static", "theme.toml", "package.json", "package-lock.json"],
-        "virtual_volumes": [
-            { "path": "/home/dev/dyyni.org/node_modules", "name": "node-modules-cache" }
-        ]
-    }
+    "virtual_volumes": [
+        { "path": "/home/dev/dyyni.org/node_modules", "name": "node-modules-cache" }
+    ]
 }

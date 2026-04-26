@@ -1,13 +1,28 @@
 <footer class="max-w-4xl mx-auto px-4 pb-18">
   <div class="flex flex-col mx-auto items-center italic">
     <div class="flex gap-8">
-      <a href="https://ring.liampas.ca/left">&lt;&lt;</a>
-      <a href="/">index</a>
-      <a href="/connect">connect</a>
-      <a href="https://ring.liampas.ca/right">&gt;&gt;</a>
+      {{ $laImg := resources.Get "images/la.png" | fingerprint }}
+      <a href="https://ring.liampas.ca/left">
+        <img src="{{ $laImg.RelPermalink }}" class="mt-2 h-4" integrity="{{ $laImg.Data.Integrity }}" />
+      </a>
+      {{ $indexImg := resources.Get "images/index.png" | fingerprint }}
+      <a href="/">
+        <img src="{{ $indexImg.RelPermalink }}" class="p-0 h-8" integrity="{{ $indexImg.Data.Integrity }}" />
+      </a>
+      {{ $connectImg := resources.Get "images/contact.png" | fingerprint }}
+      <a href="/connect">
+        <img src="{{ $connectImg.RelPermalink }}" class="p-0 h-8" integrity="{{ $connectImg.Data.Integrity }}" />
+      </a>
+      {{ $raImg := resources.Get "images/ra.png" | fingerprint }}
+      <a href="https://ring.liampas.ca/left">
+        <img src="{{ $raImg.RelPermalink }}" class="mt-2 h-4" integrity="{{ $raImg.Data.Integrity }}" />
+      </a>
     </div>
-    <div class="flex pt-4">
-      <a href="https://ring.liampas.ca/random">@@@</a>
+    <div class="flex pt-5">
+      {{ $randomImg := resources.Get "images/random.png" | fingerprint }}
+      <a href="https://ring.liampas.ca/random">
+        <img src="{{ $randomImg.RelPermalink }}" class="p-0 h-8" integrity="{{ $randomImg.Data.Integrity }}" />
+      </a>
     </div>
   </div>
 </footer>

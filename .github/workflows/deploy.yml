@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages
+name: Push to CF Pages
 
 on:
   push:
@@ -14,26 +14,9 @@ jobs:
         with:
           submodules: false
 
-      - name: Hugo setup
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: latest
-          extended: true
-
-      - name: Node.js setup
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-
-      - name: Install npm dependencies
-        run: npm ci
-
-      - name: Hugo build
-        run: hugo --minify --gc --baseURL "https://dyyni.org/" && ls -la public
-
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public --project-name=dyyni
+          command: pages deploy web --project-name=dyyni

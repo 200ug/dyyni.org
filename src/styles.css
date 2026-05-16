@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.die {
+    @apply w-48 h-48 cursor-pointer inline-block m-2;
+}
+
+.noclick {
+    @apply pointer-events-none;
+}

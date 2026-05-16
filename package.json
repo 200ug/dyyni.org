@@ -1,0 +1,23 @@
+{
+    "name": "dyyni.org",
+    "scripts": {
+        "dev": "mkdir -p dist && cp src/index.html dist/ && cp -r static dist/ && concurrently \"bun x tailwindcss -i src/styles.css -o dist/styles.css --watch\" \"bun build src/dice.js --outfile dist/dice.js --watch\" \"bun --hot serve.ts\"",
+        "build": "bun x tailwindcss -i src/styles.css -o dist/styles.css --minify && bun build src/dice.js --outfile dist/dice.js --minify && cp src/index.html dist/ && cp -r static dist/",
+        "format": "prettier --write \"**/*.{ts,tsx,js,jsx,svelte,json,md,css,mjs}\"",
+        "lint": "eslint \"src/**/*.{ts,tsx,js,jsx,svelte}\" --max-warnings=0"
+    },
+    "dependencies": {
+        "lottie-web": "^5.13.0",
+        "pako": "^2.1.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@tailwindcss/cli": "^4.3.0",
+        "concurrently": "^9.2.1",
+        "eslint": "^10.4.0",
+        "eslint-config-prettier": "^10.1.8",
+        "globals": "^17.6.0",
+        "prettier": "^3.8.3",
+        "tailwindcss": "^4.3.0"
+    }
+}

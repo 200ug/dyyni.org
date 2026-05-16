@@ -7,10 +7,11 @@
         <link rel="stylesheet" href="styles.css">
         <script>document.documentElement.classList.add("js")</script>
         <script defer src="dice.js"></script>
+        <script defer src="blackbox.js"></script>
     </head>
-    <body class="flex min-h-screen items-center justify-center">
+    <body class="flex flex-col min-h-screen">
         <noscript>
-            <ul class="font-semibold">
+            <ul class="font-semibold flex flex-col items-center justify-center min-h-screen">
                 <li>Email: a (at) this domain</li>
                 <li>PGP: <a href="/static/pgp.asc">1530 .. 2B3E</a></li>
                 <li>Signal: <a href="https://signal.me/#eu/bsHM3c8pZCwBgZqPF4V2AmDpMww7K2bxD6iAfECyj6swnfG6v7hBbZYYJOPxiuky">mix.99</a></li>
@@ -19,10 +20,21 @@
                 <li>Codeberg: <a href="https://codeberg.org/2ug">2ug</a></li>
             </ul>
         </noscript>
-        <div class="js-only flex flex-col items-center pb-20">
+        <main class="js-only flex flex-1 items-center justify-center flex-col pb-20">
             <div class="die" id="die"></div>
             <div class="result" id="result">Roll a die!</div>
-        </div>
+        </main>
+        <footer class="js-only flex items-center justify-between px-4 py-2 border-t border-text/10 text-sm">
+            <nav class="flex gap-3">
+                <a href="https://ring.liampas.ca/left" aria-label="Previous">&lt;&lt;</a>
+                <a href="https://ring.liampas.ca/random" aria-label="Random">##</a>
+                <a href="https://ring.liampas.ca/right" aria-label="Next">&gt;&gt;</a>
+            </nav>
+            <form id="blackbox-form" class="flex gap-1">
+                <input type="text" id="blackbox-input" placeholder="Drop a message..." class="bg-bg border border-text/20 rounded px-2 py-1 text-sm text-text focus:outline-none focus:border-hyperlink">
+                <button type="submit" aria-label="Send" class="inline-flex items-center cursor-pointer"><img src="/static/icons/util/send.svg" alt="Send" class="h-6 w-6"></button>
+            </form>
+        </footer>
     </body>
 </html>
 

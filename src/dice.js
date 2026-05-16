@@ -2,7 +2,7 @@ import lottie from "lottie-web"
 import pako from "pako"
 
 const TGS_DIR_PREFIX = "/static/dice"
-const DIE_ANIMATION_COUNT = 7
+const DIE_ANIMATION_COUNT = 6
 
 // null (not loaded) | object (decompressed lottie json)
 const animData = new Array(DIE_ANIMATION_COUNT).fill(null)
@@ -31,17 +31,17 @@ const loadTgsData = async (index) => {
 }
 
 const init = async () => {
-    await Promise.all(Array.from({ length: DIE_ANIMATION_COUNT }, (_, i) => loadTgsData(i)))
+    await Promise.all(Array.from({ length: DIE_ANIMATION_COUNT }, (_, i) => loadTgsData(i + 1)))
 }
 
 const getRandomLoaded = () => {
     const loaded = animData.reduce((acc, data, i) => {
-        if (data && i !== 0 && i !== lastRollResult) acc.push(i)
+        if (data && i !== lastRollResult) acc.push(i)
         return acc
     }, [])
 
     if (loaded.length === 0) {
-        return 1 + Math.floor(Math.random() * (DIE_ANIMATION_COUNT - 1))
+        return Math.floor(Math.random() * DIE_ANIMATION_COUNT)
     }
 
     return loaded[Math.floor(Math.random() * loaded.length)]

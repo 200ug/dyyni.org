@@ -2,24 +2,27 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>dice demo</title>
         <link rel="stylesheet" href="styles.css">
+        <script>document.documentElement.classList.add("js")</script>
         <script defer src="dice.js"></script>
     </head>
-    <body>
+    <body class="flex min-h-screen items-center justify-center">
         <noscript>
-            <ul>
-                <li>Detail 1</li>
-                <li>Detail 2</li>
-                <li>Detail 3</li>
-                <li>Detail 4</li>
-                <li>Detail 5</li>
-                <li>Detail 6</li>
+            <ul class="font-semibold">
+                <li>Email: a (at) this domain</li>
+                <li>PGP: <a href="/static/pgp.asc">1530 .. 2B3E</a></li>
+                <li>Signal: <a href="https://signal.me/#eu/bsHM3c8pZCwBgZqPF4V2AmDpMww7K2bxD6iAfECyj6swnfG6v7hBbZYYJOPxiuky">mix.99</a></li>
+                <li>Monero: <a href="/static/monero.txt">83B5pKo .. FHe23Y</a></li>
+                <li>Telegram: <a href="https://t.me/japangrab">japangrab</a></li>
+                <li>Codeberg: <a href="https://codeberg.org/2ug">2ug</a></li>
             </ul>
         </noscript>
-        <div id="dice-frame">
+        <div class="js-only flex flex-col items-center pb-20">
             <div class="die" id="die"></div>
+            <div class="result" id="result">Roll a die!</div>
         </div>
-        <div id="result" class="mt-4 text-lg font-semibold">Roll a die!</div>
     </body>
 </html>
+

@@ -3,11 +3,49 @@ import pako from "pako"
 
 const TGS_DIR_PREFIX = "/static/dice"
 const DIE_ANIMATION_COUNT = 6
+const ROLL_RESULTS = [
+    {
+        icon: "/static/icons/email.svg",
+        alt: "Email",
+        text: "a (at) this domain"
+    },
+    {
+        icon: "/static/icons/pgp.svg",
+        alt: "PGP key",
+        link: "/static/pgp.asc",
+        text: "1530 .. 2B3E"
+    },
+    {
+        icon: "/static/icons/signal.svg",
+        alt: "Signal",
+        link: "https://signal.me/#eu/bsHM3c8pZCwBgZqPF4V2AmDpMww7K2bxD6iAfECyj6swnfG6v7hBbZYYJOPxiuky",
+        text: "mix.99"
+    },
+    {
+        icon: "/static/icons/monero.svg",
+        alt: "Monero",
+        link: "/static/monero.txt",
+        text: "83B5pKo .. FHe23Y"
+    },
+    {
+        icon: "/static/icons/telegram.svg",
+        alt: "Telegram",
+        link: "https://t.me/japangrab",
+        text: "japangrab"
+    },
+    {
+        icon: "/static/icons/codeberg.svg",
+        alt: "Codeberg",
+        link: "https://codeberg.org/2ug",
+        text: "2ug"
+    }
+]
 
 // null (not loaded) | object (decompressed lottie json)
 const animData = new Array(DIE_ANIMATION_COUNT).fill(null)
 
 let activeAnim = null
+let isInitRollDone = false
 let lastRollResult = null
 
 const loadTgsData = async (index) => {
@@ -67,10 +105,30 @@ const executeRoll = (value) => {
         autoplay: true
     })
 
-    document.getElementById("result").textContent = `Rolled: ${value}`
     lastRollResult = value
 
-    activeAnim.addEventListener("complete", () => el.classList.remove("noclick"))
+    if (isInitRollDone) {
+        document.getElementById("result").classList.add("opacity-0")
+    }
+
+    activeAnim.addEventListener("complete", () => {
+        if (isInitRollDone) {
+            const result = ROLL_RESULTS[value - 1]
+            const resultEl = document.getElementById("result")
+            resultEl.classList.remove("opacity-0")
+            const img = `<img src="${result.icon}" alt="${result.alt}" class="h-6 w-6">`
+            if (result.link) {
+                resultEl.innerHTML = `<a href="${result.link}" target="_blank" class="inline-flex items-center gap-2">${img}${result.text}</a>`
+            } else if (result.text) {
+                resultEl.innerHTML = `<span class="inline-flex items-center gap-2">${img}${result.text}</span>`
+            } else {
+                resultEl.innerHTML = img
+            }
+        }
+
+        isInitRollDone = true
+        el.classList.remove("noclick")
+    })
 }
 
 document.getElementById("die").addEventListener("click", () => executeRoll(getRandomLoaded()))

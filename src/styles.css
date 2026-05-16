@@ -1,7 +1,40 @@
 @import "tailwindcss";
 
+@theme {
+    --color-bg: #e7eaed;
+    --color-text: #000;
+    --color-hyperlink: #27456d;
+    --color-hyperlink-hover: #3a67a1;
+}
+
+@layer base {
+    :root {
+        @apply text-text bg-bg font-sans;
+    }
+
+    a {
+        @apply text-hyperlink hover:text-hyperlink-hover transition-colors duration-200;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.js-only {
+    display: none;
+}
+.js .js-only {
+    display: flex;
+}
+
 .die {
-    @apply w-48 h-48 cursor-pointer inline-block m-2;
+    @apply w-48 h-48 md:w-64 md:h-64 cursor-pointer inline-block m-2;
+}
+
+.result {
+    @apply mt-4 font-semibold transition-opacity duration-200 text-lg;
 }
 
 .noclick {

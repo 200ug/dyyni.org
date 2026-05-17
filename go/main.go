@@ -36,6 +36,7 @@ func main() {
 	limiter := NewLimiter(5, time.Minute)
 
 	go StartPruneLoop(db)
+	go StartLimiterCleanup(limiter)
 
 	http.HandleFunc("/blackbox", BlackboxHandler(db, limiter, allowedOrigin))
 

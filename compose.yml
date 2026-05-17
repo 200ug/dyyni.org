@@ -1,0 +1,18 @@
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build: ../go
+    environment:
+      - ENV=production
+    volumes:
+      - ./database:/database
+    restart: unless-stopped
+    expose:
+      - "8080"

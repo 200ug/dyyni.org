@@ -5,6 +5,8 @@
     --color-text: #000;
     --color-hyperlink: #27456d;
     --color-hyperlink-hover: #3a67a1;
+    --color-success: #00ad40;
+    --color-error: #d10000;
 }
 
 @layer base {
@@ -39,4 +41,22 @@
 
 .noclick {
     @apply pointer-events-none;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        border-color: var(--blink-color);
+    }
+    50% {
+        border-color: color-mix(in srgb, var(--color-text) 20%, transparent);
+    }
+}
+
+#blackbox-input {
+    --blink-color: color-mix(in srgb, var(--color-text) 20%, transparent);
+}
+
+.blink-border {
+    animation: blink 0.8s ease-in-out 1 both;
 }

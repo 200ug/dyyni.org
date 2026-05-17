@@ -1,4 +1,4 @@
-const ENDPOINT = "https://organic.dyyni.org/blackbox"
+const ENDPOINT = ENDPOINT_URL
 const MAX_MESSAGE_LENGTH = 80
 
 const form = document.getElementById("blackbox-form")
@@ -6,7 +6,20 @@ const input = document.getElementById("blackbox-input")
 
 input.maxLength = MAX_MESSAGE_LENGTH
 
-// TODO: add a server response handle (simply, change the input field border color to red on error)
+function flashBorder(color) {
+    input.style.setProperty("--blink-color", color)
+    input.classList.remove("blink-border")
+    void input.offsetWidth
+    input.classList.add("blink-border")
+    input.addEventListener(
+        "animationend",
+        () => {
+            input.classList.remove("blink-border")
+            input.style.removeProperty("--blink-color")
+        },
+        { once: true }
+    )
+}
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
@@ -19,7 +32,12 @@ form.addEventListener("submit", (e) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message })
     })
+        .then((res) => {
+            flashBorder(res.ok ? "var(--color-success)" : "var(--color-error)")
+        })
+        .catch(() => {
+            flashBorder("var(--color-error)")
+        })
 
     input.value = ""
 })
-

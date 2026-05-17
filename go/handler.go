@@ -20,6 +20,17 @@ type payload struct {
 	Message string `json:"message"`
 }
 
+func getClientIP(r *http.Request) string {
+	if ip := r.Header.Get("X-Real-IP"); ip != "" {
+		return ip
+	}
+	ip, _, err := net.SplitHostPort(r.RemoteAddr)
+	if err != nil {
+		return r.RemoteAddr
+	}
+	return ip
+}
+
 func BlackboxHandler(db *sql.DB, limiter *Limiter, allowedOrigin string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", allowedOrigin)
@@ -36,10 +47,7 @@ func BlackboxHandler(db *sql.DB, limiter *Limiter, allowedOrigin string) http.Ha
 			return
 		}
 
-		ip, _, err := net.SplitHostPort(r.RemoteAddr)
-		if err != nil {
-			ip = r.RemoteAddr
-		}
+		ip := getClientIP(r)
 
 		if !limiter.Allow(ip) {
 			slog.Warn("rate limited", "ip", ip)

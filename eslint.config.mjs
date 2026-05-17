@@ -9,7 +9,8 @@ export default [
         ignores: ["dist/**", "node_modules/**", ".stormdrain/**"],
         languageOptions: {
             globals: {
-                ...globals.browser
+                ...globals.browser,
+                ENDPOINT_URL: "readonly"
             }
         }
     }

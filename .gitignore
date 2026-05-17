@@ -1,4 +1,6 @@
 .stormdrain/
 dist/
 node_modules/
+go/bin
+database/
 

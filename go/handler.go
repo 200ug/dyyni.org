@@ -20,10 +20,28 @@ type payload struct {
 	Message string `json:"message"`
 }
 
-func getClientIP(r *http.Request) string {
+func getClientIP(r *http.Request, allowlist *IPAllowlist, production bool) string {
+	if production && allowlist != nil {
+		remoteIP, _, err := net.SplitHostPort(r.RemoteAddr)
+		if err != nil {
+			remoteIP = r.RemoteAddr
+		}
+		if !allowlist.Contains(net.ParseIP(remoteIP)) {
+			return ""
+		}
+		return r.Header.Get("CF-Connecting-IP")
+	}
+
+	// NOTE: only dev environment stuff below
+
+	if ip := r.Header.Get("CF-Connecting-IP"); ip != "" {
+		return ip
+	}
+
 	if ip := r.Header.Get("X-Real-IP"); ip != "" {
 		return ip
 	}
+
 	ip, _, err := net.SplitHostPort(r.RemoteAddr)
 	if err != nil {
 		return r.RemoteAddr
@@ -31,8 +49,15 @@ func getClientIP(r *http.Request) string {
 	return ip
 }
 
-func BlackboxHandler(db *sql.DB, limiter *Limiter, allowedOrigin string) http.HandlerFunc {
+func HealthHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+}
+
+func BlackboxHandler(db *sql.DB, limiter *Limiter, allowedOrigin string, allowlist *IPAllowlist, production bool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("X-Content-Type-Options", "nosniff")
+		w.Header().Set("X-Frame-Options", "DENY")
+		w.Header().Set("Referrer-Policy", "no-referrer")
 		w.Header().Set("Access-Control-Allow-Origin", allowedOrigin)
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
@@ -47,7 +72,11 @@ func BlackboxHandler(db *sql.DB, limiter *Limiter, allowedOrigin string) http.Ha
 			return
 		}
 
-		ip := getClientIP(r)
+		ip := getClientIP(r, allowlist, production)
+		if ip == "" {
+			w.WriteHeader(http.StatusForbidden)
+			return
+		}
 
 		if !limiter.Allow(ip) {
 			slog.Warn("rate limited", "ip", ip)

@@ -7,6 +7,8 @@
 
 Rootless Podman deployment likely requires the following packages: `podman podman-compose slirp4netns fuse-overlayfs uidmap dbus-user-session catatonit` (and enabling lingering: `sudo loginctl enable-lingering <username>`. Firewalling should be configured to block 8081 to not expose the local healthcheck endpoint just in case.
 
+Notably in this case the incoming traffic filtering (CF IPs only) is done on application level, but it could just as well be done on OS level with e.g. `ufw`.
+
 ---
 
 ###### Mirrors: [Codeberg](https://codeberg.org/2ug/dyyni.org) / [Github](https://github.com/200ug/dyyni.org)

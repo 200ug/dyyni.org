@@ -1,7 +1,6 @@
 import lottie from "lottie-web"
-import pako from "pako"
 
-const TGS_DIR_PREFIX = "/static/dice"
+const DICE_DIR_PREFIX = "/static/dice"
 const DIE_ANIMATION_COUNT = 6
 const ROLL_RESULTS = [
     {
@@ -52,14 +51,9 @@ const loadTgsData = async (index) => {
     if (animData[index]) return animData[index]
 
     try {
-        const resp = await fetch(`${TGS_DIR_PREFIX}/dice_${index}.tgs`)
-
+        const resp = await fetch(`${DICE_DIR_PREFIX}/dice_${index}.json`)
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
-
-        const buf = await resp.arrayBuffer()
-        const raw = pako.inflate(new Uint8Array(buf), { to: "string" })
-        animData[index] = JSON.parse(raw)
-
+        animData[index] = await resp.json()
         return animData[index]
     } catch (err) {
         console.error(`Failed to load dice ${index}:`, err)

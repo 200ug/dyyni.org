@@ -57,13 +57,7 @@ const loadTgsData = async (index) => {
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
 
         const buf = await resp.arrayBuffer()
-        let raw
-        try {
-            raw = pako.inflate(new Uint8Array(buf), { to: "string" })
-        } catch {
-            // cdn/browser might've already decompressed to plain lottie json
-            raw = new TextDecoder().decode(buf)
-        }
+        const raw = pako.inflate(new Uint8Array(buf), { to: "string" })
         animData[index] = JSON.parse(raw)
 
         return animData[index]

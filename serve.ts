@@ -8,7 +8,7 @@ Bun.serve({
             url.pathname === "/" ? `${STATIC_DIR}/index.html` : `${STATIC_DIR}${url.pathname}`
         const file = Bun.file(path)
         if (await file.exists()) return new Response(file)
-        return new Response("Not found", { status: 404 })
+        return new Response(Bun.file(`${STATIC_DIR}/index.html`), { status: 404 })
     }
 })
 

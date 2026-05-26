@@ -17,8 +17,8 @@ const ROLL_RESULTS = [
     {
         icon: "/static/icons/signal.svg",
         alt: "Signal",
-        link: "https://signal.me/#eu/bsHM3c8pZCwBgZqPF4V2AmDpMww7K2bxD6iAfECyj6swnfG6v7hBbZYYJOPxiuky",
-        text: "mix.99"
+        link: "https://signal.me/#eu/dM52GrafLfl3osNgEGSwcqzo_D4u1taocO3cw_vtQdd_wpoCQBBOKJ8LgIBbTCxW",
+        text: "msg.33"
     },
     {
         icon: "/static/icons/monero.svg",

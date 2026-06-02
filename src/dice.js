@@ -112,9 +112,9 @@ const executeRoll = (value) => {
             resultEl.classList.remove("opacity-0")
             const img = `<img src="${result.icon}" alt="${result.alt}" class="h-6 w-6">`
             if (result.link) {
-                resultEl.innerHTML = `<a href="${result.link}" target="_blank" class="inline-flex items-center gap-2">${img}${result.text}</a>`
+                resultEl.innerHTML = `<a href="${result.link}" title="${result.alt}" target="_blank" class="inline-flex items-center gap-2">${img}${result.text}</a>`
             } else if (result.text) {
-                resultEl.innerHTML = `<span class="inline-flex items-center gap-2">${img}${result.text}</span>`
+                resultEl.innerHTML = `<span title="${result.alt}" class="inline-flex items-center gap-2">${img}${result.text}</span>`
             } else {
                 resultEl.innerHTML = img
             }

@@ -7,10 +7,13 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+[[ ! -f ".env" ]] && echo "[!] .env missing, remember to add it to server before deploying"
+
 DEST="$1"
 REMOTE_DIR="~/services/dyyni_blackbox"
 
-rsync -avz --relative --exclude='bin/' \
+rsync -avz --relative --ignore-missing-args --exclude='bin/' \
     go/ \
+    .env \
     scripts/deploy_backend.sh \
     "$DEST:$REMOTE_DIR/"

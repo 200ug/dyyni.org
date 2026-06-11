@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-bun run format
-bun run lint
+if [[ "$1" != "go" ]]; then
+    bun run format
+    bun run lint
+fi
 
-go mod tidy -C go
-gofmt -w go
+if [[ "$1" != "bun" ]]; then
+    go mod tidy -C go
+    gofmt -w go
+fi
 

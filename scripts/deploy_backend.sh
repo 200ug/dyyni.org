@@ -2,7 +2,6 @@
 
 [[ ! -f "go/Dockerfile" ]] && echo "run from project root" && exit 1
 
-mkdir -p database
 podman rm -f bb-backend 2>/dev/null
 podman build -t blackbox_go go/
 podman run -d \
@@ -10,7 +9,7 @@ podman run -d \
     --network host \
     --restart unless-stopped \
     -e ENV=production \
-    -v ./database:/database \
+    -v ./.env:/.env \
     --health-cmd "wget -q -O /dev/null http://127.0.0.1:8081/health" \
     --health-interval 10s \
     --health-timeout 5s \

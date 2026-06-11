@@ -2,4 +2,7 @@ module codeberg.org/2ug/dyyni.org
 
 go 1.26.2
 
-require github.com/mattn/go-sqlite3 v1.14.44
+require (
+	github.com/caarlos0/env/v11 v11.4.1
+	github.com/joho/godotenv v1.5.1
+)

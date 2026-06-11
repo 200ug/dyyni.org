@@ -2,13 +2,13 @@ package main
 
 import (
 	"crypto/tls"
+	"io"
+	"log"
 	"log/slog"
 	"net/http"
 	"os"
 	"time"
 )
-
-const dbPath = "./database/data.db"
 
 func main() {
 	env := os.Getenv("ENV")
@@ -22,23 +22,21 @@ func main() {
 	}
 	slog.Info("env", "mode", env, "allowedOrigin", allowedOrigin)
 
-	db, err := InitDB(dbPath)
+	tg, err := NewTGSender()
 	if err != nil {
-		slog.Error("failed to init database", "error", err)
+		slog.Error("telegram sender creation failed", "error", err)
 		os.Exit(1)
 	}
-	defer db.Close()
 
 	limiter := NewLimiter(5, time.Minute)
 	allowlist := LoadAllowlist()
 
-	go StartPruneLoop(db)
 	go StartLimiterCleanup(limiter)
 
 	production := env == "production"
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/blackbox", BlackboxHandler(db, limiter, allowedOrigin, allowlist, production))
+	mux.HandleFunc("/blackbox", BlackboxHandler(tg, limiter, allowedOrigin, allowlist, production))
 
 	if env == "production" {
 		cert, err := generateSelfSignedCert()
@@ -63,6 +61,7 @@ func main() {
 			ReadTimeout:  5 * time.Second,
 			WriteTimeout: 10 * time.Second,
 			IdleTimeout:  60 * time.Second,
+			ErrorLog:     log.New(io.Discard, "", 0), // prevents log spam from handshake errors etc.
 			TLSConfig: &tls.Config{
 				Certificates: []tls.Certificate{cert},
 				MinVersion:   tls.VersionTLS12,

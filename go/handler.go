@@ -1,8 +1,8 @@
 package main
 
 import (
-	"database/sql"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log/slog"
 	"net"
@@ -53,7 +53,7 @@ func HealthHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-func BlackboxHandler(db *sql.DB, limiter *Limiter, allowedOrigin string, allowlist *IPAllowlist, production bool) http.HandlerFunc {
+func BlackboxHandler(tgs *TGSender, limiter *Limiter, allowedOrigin string, allowlist *IPAllowlist, production bool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("X-Content-Type-Options", "nosniff")
 		w.Header().Set("X-Frame-Options", "DENY")
@@ -86,7 +86,6 @@ func BlackboxHandler(db *sql.DB, limiter *Limiter, allowedOrigin string, allowli
 
 		body, err := io.ReadAll(io.LimitReader(r.Body, MaxRequestBody))
 		if err != nil {
-			slog.Error("read body failed", "ip", ip, "error", err)
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
@@ -103,13 +102,16 @@ func BlackboxHandler(db *sql.DB, limiter *Limiter, allowedOrigin string, allowli
 			return
 		}
 
-		if err := InsertMessage(db, msg); err != nil {
-			slog.Error("insert failed", "ip", ip, "error", err)
+		// TODO: add emoji flag with geoip db (e.g. maxmind lite)
+
+		text := fmt.Sprintf("%s: \"%s\"", ip, msg)
+		if err := tgs.SendMessage(text); err != nil {
+			slog.Error("telegram send message failed", "ip", ip, "error", err)
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 
-		slog.Info("message stored", "ip", ip, "msg", msg)
+		slog.Info("message sent", "ip", ip, "msg", msg)
 		w.WriteHeader(http.StatusOK)
 	}
 }

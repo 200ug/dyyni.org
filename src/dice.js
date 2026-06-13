@@ -110,7 +110,7 @@ const executeRoll = (value) => {
             const result = ROLL_RESULTS[value - 1]
             const resultEl = document.getElementById("result")
             resultEl.classList.remove("opacity-0")
-            const img = `<img src="${result.icon}" alt="${result.alt}" class="h-6 w-6">`
+            const img = `<img src="${result.icon}" alt="${result.alt}" class="h-6 w-6 pt-0.5">`
             if (result.link) {
                 resultEl.innerHTML = `<a href="${result.link}" title="${result.alt}" target="_blank" class="inline-flex items-center gap-2">${img}${result.text}</a>`
             } else if (result.text) {

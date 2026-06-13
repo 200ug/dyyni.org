@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-    --color-bg: #e7eaed;
-    --color-text: #000;
-    --color-hyperlink: #27456d;
-    --color-hyperlink-hover: #3a67a1;
-    --color-success: #00ad40;
-    --color-error: #d10000;
+    --color-bg: #181512;
+    --color-text: #fff;
+    --color-hyperlink: #fff;
+    --color-hyperlink-hover: #cccccc;
+    --color-success: #97ff52;
+    --color-error: #ff5257;
 }
 
 @layer base {
@@ -36,27 +36,22 @@
 }
 
 .result {
-    @apply mt-4 font-semibold transition-opacity duration-200 text-xl;
+    @apply mt-4 font-semibold transition-opacity duration-200 text-xl hover:underline;
 }
 
 .noclick {
     @apply pointer-events-none;
 }
 
-@keyframes blink {
-    0%,
-    100% {
-        border-color: var(--blink-color);
-    }
-    50% {
-        border-color: color-mix(in srgb, var(--color-text) 20%, transparent);
-    }
-}
-
 #blackbox-input {
     --blink-color: color-mix(in srgb, var(--color-text) 20%, transparent);
 }
 
+@keyframes blink {
+    0%, 100% { border-color: color-mix(in srgb, var(--color-text) 20%, transparent); }
+    50%       { border-color: var(--blink-color); }
+}
+
 .blink-border {
-    animation: blink 0.8s ease-in-out 1 both;
+    animation: blink 1.2s ease-in-out 3;
 }

@@ -18,7 +18,7 @@
         <script defer src="/dice.js"></script>
         <script defer src="/blackbox.js"></script>
     </head>
-    <body class="flex flex-col min-h-screen">
+    <body class="flex flex-col md:items-center md:justify-center min-h-screen bg-bg">
         <noscript>
             <ul class="font-semibold flex flex-col items-center justify-center min-h-screen">
                 <li>Email: a (at) this domain</li>
@@ -29,21 +29,28 @@
                 <li>Codeberg: <a href="https://codeberg.org/2ug">2ug</a></li>
             </ul>
         </noscript>
-        <main class="js-only flex flex-1 items-center justify-center flex-col pb-20">
-            <div class="die" id="die"></div>
-            <div class="result" id="result">Roll a die!</div>
-        </main>
-        <footer class="js-only flex items-center justify-between px-4 py-2 border-t border-text/10 text-sm">
-            <nav class="flex gap-3">
-                <a href="https://ring.liampas.ca/left" aria-label="Previous">&lt;&lt;</a>
-                <a href="https://ring.liampas.ca/random" aria-label="Random">##</a>
-                <a href="https://ring.liampas.ca/right" aria-label="Next">&gt;&gt;</a>
-            </nav>
-            <form id="blackbox-form" class="relative flex">
-                <input type="text" id="blackbox-input" placeholder="Drop a message..." class="bg-bg border border-text/20 rounded px-2 py-1 pr-8 text-sm text-text focus:outline-none focus:border-hyperlink w-full">
-                <button type="submit" aria-label="Send" class="absolute right-1 top-1/2 -translate-y-1/2 inline-flex items-center cursor-pointer"><img src="/static/icons/util/send.svg" alt="Send" class="h-6 w-6"></button>
-            </form>
-        </footer>
+        <div class="js-only w-full min-h-screen md:min-h-0 md:max-w-lg md:rounded-2xl md:border md:border-text/10 md:shadow-lg md:overflow-hidden md:my-8 flex flex-col bg-bg">
+            <main class="flex flex-1 text-md items-center justify-center flex-col pb-20 pt-10">
+                <div class="die" id="die"></div>
+                <div class="result" id="result">
+                    <span class="inline-flex items-center gap-2">
+                        <span class="h-6 w-0" aria-hidden="true"></span>
+                        Roll a die!
+                    </span>
+                </div>
+            </main>
+            <footer class="flex items-center justify-between px-4 py-2 border-t border-text/10 text-md">
+                <nav class="flex gap-3">
+                    <a href="https://ring.liampas.ca/left" class="hover:underline" aria-label="Previous">&lt;&lt;</a>
+                    <a href="https://ring.liampas.ca/random" class="hover:underline" aria-label="Random">##</a>
+                    <a href="https://ring.liampas.ca/right" class="hover:underline" aria-label="Next">&gt;&gt;</a>
+                </nav>
+                <form id="blackbox-form" class="relative flex">
+                    <input type="text" id="blackbox-input" placeholder="Drop a message..." class="bg-bg border border-text/20 rounded px-2 py-1 pr-8 text-md text-text focus:outline-none focus:border-hyperlink w-full">
+                    <button type="submit" aria-label="Send" class="absolute right-1 top-1/2 -translate-y-1/2 inline-flex items-center cursor-pointer hover:text-text"><img src="/static/icons/util/send.svg" alt="Send" class="h-6 w-6 hover:brightness-0 transition-all duration-200"></button>
+                </form>
+            </footer>
+        </div>
     </body>
 </html>
 

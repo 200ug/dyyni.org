@@ -36,7 +36,7 @@
 }
 
 .result {
-    @apply mt-4 font-semibold transition-opacity duration-200 text-lg;
+    @apply mt-4 font-semibold transition-opacity duration-200 text-xl;
 }
 
 .noclick {

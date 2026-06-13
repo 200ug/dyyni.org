@@ -7,6 +7,7 @@
     --color-hyperlink-hover: #cccccc;
     --color-success: #97ff52;
     --color-error: #ff5257;
+    --blink-color: color-mix(in srgb, var(--color-text) 20%, transparent);
 }
 
 @layer base {
@@ -43,14 +44,10 @@
     @apply pointer-events-none;
 }
 
-#blackbox-input {
-    --blink-color: color-mix(in srgb, var(--color-text) 20%, transparent);
-}
-
 @keyframes blink {
     0%,
     100% {
-        border-color: color-mix(in srgb, var(--color-text) 20%, transparent);
+        border-color: var(--color-text);
     }
     50% {
         border-color: var(--blink-color);

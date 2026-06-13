@@ -48,8 +48,13 @@
 }
 
 @keyframes blink {
-    0%, 100% { border-color: color-mix(in srgb, var(--color-text) 20%, transparent); }
-    50%       { border-color: var(--blink-color); }
+    0%,
+    100% {
+        border-color: color-mix(in srgb, var(--color-text) 20%, transparent);
+    }
+    50% {
+        border-color: var(--blink-color);
+    }
 }
 
 .blink-border {

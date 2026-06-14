@@ -4,6 +4,10 @@ import (
 	"net"
 )
 
+const (
+	defaultFlag = "\U0001F3F4\u200D\u2620\uFE0F"
+)
+
 // https://www.cloudflare.com/ips/
 var cloudflareCIDRs = []string{
 	"173.245.48.0/20",
@@ -46,6 +50,7 @@ func LoadAllowlist() *IPAllowlist {
 	return &IPAllowlist{nets: nets}
 }
 
+// Check if a given IP address belongs to a whitelisted range.
 func (a *IPAllowlist) Contains(ip net.IP) bool {
 	for _, n := range a.nets {
 		if n.Contains(ip) {
@@ -53,4 +58,20 @@ func (a *IPAllowlist) Contains(ip net.IP) bool {
 		}
 	}
 	return false
+}
+
+// Convert the 2-letter ISO code into a corresponding flag emoji.
+// Returns the default flag for unknown/empty/invalid codes.
+func CCToFlag(code string) string {
+	if code == "" || code == "XX" {
+		return defaultFlag
+	}
+	if len(code) != 2 {
+		return defaultFlag
+	}
+	r0, r1 := rune(code[0]), rune(code[1])
+	if r0 < 'A' || r0 > 'Z' || r1 < 'A' || r1 > 'Z' {
+		return defaultFlag
+	}
+	return string('🇦'+r0-'A') + string('🇦'+r1-'A')
 }

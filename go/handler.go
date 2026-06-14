@@ -102,9 +102,13 @@ func BlackboxHandler(tgs *TGSender, limiter *Limiter, allowedOrigin string, allo
 			return
 		}
 
-		// TODO: add emoji flag with geoip db (e.g. maxmind lite)
+		// NOTE: ip geolocation must be enabled for the domain in
+		//		 the CF dashboard (network -> ip geolocation)
 
-		text := fmt.Sprintf("%s: \"%s\"", ip, msg)
+		country := r.Header.Get("CF-IPCountry")
+		flag := CCToFlag(country)
+		text := fmt.Sprintf("%s %s: %q", flag, ip, msg)
+
 		if err := tgs.SendMessage(text); err != nil {
 			slog.Error("telegram send message failed", "ip", ip, "error", err)
 			w.WriteHeader(http.StatusInternalServerError)

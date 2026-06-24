@@ -2,6 +2,7 @@ package main
 
 import (
 	"net"
+	"strings"
 )
 
 const (
@@ -74,4 +75,19 @@ func CCToFlag(code string) string {
 		return defaultFlag
 	}
 	return string('🇦'+r0-'A') + string('🇦'+r1-'A')
+}
+
+// Escape all "MarkdownV2" special characters from Telegram
+func escapeMarkdownV2(s string) string {
+	var b strings.Builder
+	b.Grow(len(s))
+	for _, r := range s {
+		switch r {
+		case '_', '*', '[', ']', '(', ')', '~', '`', '>',
+			'#', '+', '-', '=', '|', '{', '}', '.', '!', '\\':
+			b.WriteByte('\\')
+		}
+		b.WriteRune(r)
+	}
+	return b.String()
 }

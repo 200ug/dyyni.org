@@ -51,8 +51,9 @@ func isTokenValid(botToken string) bool {
 func (tgs *TGSender) SendMessage(text string) error {
 	url := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage", tgs.BotToken)
 	body, _ := json.Marshal(map[string]string{
-		"chat_id": tgs.ChatID,
-		"text":    text,
+		"chat_id":    tgs.ChatID,
+		"text":       text,
+		"parse_mode": "MarkdownV2",
 	})
 	resp, err := http.Post(url, "application/json", bytes.NewReader(body))
 	if err != nil {

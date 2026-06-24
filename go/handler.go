@@ -107,7 +107,7 @@ func BlackboxHandler(tgs *TGSender, limiter *Limiter, allowedOrigin string, allo
 
 		country := r.Header.Get("CF-IPCountry")
 		flag := CCToFlag(country)
-		text := fmt.Sprintf("%s `%s`: %q", flag, ip, msg)
+		text := fmt.Sprintf("%s `%s`: %s", flag, ip, escapeMarkdownV2(msg))
 
 		if err := tgs.SendMessage(text); err != nil {
 			slog.Error("telegram send message failed", "ip", ip, "error", err)

@@ -1,5 +1,5 @@
 const ENDPOINT = ENDPOINT_URL
-const MAX_MESSAGE_LENGTH = 80
+const MAX_MESSAGE_LENGTH = 160
 
 const form = document.getElementById("blackbox-form")
 const input = document.getElementById("blackbox-input")

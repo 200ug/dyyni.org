@@ -12,7 +12,7 @@ import (
 
 const (
 	// NOTE: ensure this matches with src/blackbox.js value
-	MaxMessageLength = 80
+	MaxMessageLength = 160
 	MaxRequestBody   = 128
 )
 
@@ -107,7 +107,7 @@ func BlackboxHandler(tgs *TGSender, limiter *Limiter, allowedOrigin string, allo
 
 		country := r.Header.Get("CF-IPCountry")
 		flag := CCToFlag(country)
-		text := fmt.Sprintf("%s %s: %q", flag, ip, msg)
+		text := fmt.Sprintf("%s `%s`: %q", flag, ip, msg)
 
 		if err := tgs.SendMessage(text); err != nil {
 			slog.Error("telegram send message failed", "ip", ip, "error", err)

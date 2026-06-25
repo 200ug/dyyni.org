@@ -6,7 +6,7 @@ const PLACEHOLDERS = [
     "Say hello...",
     "Leave a note...",
     "Write a poem...",
-    "Drop an idea...",
+    "Drop an idea..."
 ]
 
 const form = document.getElementById("blackbox-form")

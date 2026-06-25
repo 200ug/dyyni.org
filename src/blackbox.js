@@ -1,9 +1,18 @@
 const ENDPOINT = ENDPOINT_URL
 const MAX_MESSAGE_LENGTH = 160
+const PLACEHOLDERS = [
+    "What's up?",
+    "How are you?",
+    "Say hello...",
+    "Leave a note...",
+    "Write a poem...",
+    "Drop an idea...",
+]
 
 const form = document.getElementById("blackbox-form")
 const input = document.getElementById("blackbox-input")
 
+input.placeholder = PLACEHOLDERS[Math.floor(Math.random() * PLACEHOLDERS.length)]
 input.maxLength = MAX_MESSAGE_LENGTH
 
 function flashBorder(color) {

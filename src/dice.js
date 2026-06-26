@@ -29,8 +29,8 @@ const ROLL_RESULTS = [
     {
         icon: "/static/icons/telegram.svg",
         alt: "Telegram",
-        link: "https://t.me/japangrab",
-        text: "japangrab"
+        link: "https://t.me/geo2dx",
+        text: "geo2dx"
     },
     {
         icon: "/static/icons/codeberg.svg",

@@ -1,5 +1,5 @@
 .stormdrain/
 dist/
 node_modules/
-go/bin
+bin/
 .env

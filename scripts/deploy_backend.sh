@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-[[ ! -f "go/Dockerfile" ]] && echo "run from project root" && exit 1
+[[ ! -f "server/Dockerfile" ]] && echo "run from project root" && exit 1
 
-podman rm -f bb-backend 2>/dev/null
-podman build -t blackbox_go go/
+podman rm -f blackbox 2>/dev/null
+podman build -t blackbox server/
 podman run -d \
-    --name bb-backend \
+    --name blackbox \
     --network host \
     --restart unless-stopped \
     -e ENV=production \
@@ -15,4 +15,4 @@ podman run -d \
     --health-timeout 5s \
     --health-retries 3 \
     --health-start-period 5s \
-    blackbox_go
+    blackbox

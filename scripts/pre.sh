@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 if [[ "$1" != "go" ]]; then
-    bun run format
-    bun run lint
+    bun run --cwd web format
+    bun run --cwd web lint
 fi
 
 if [[ "$1" != "bun" ]]; then
-    go mod tidy -C go
-    gofmt -w go
+    go mod tidy -C server
+    gofmt -w server
 fi
 

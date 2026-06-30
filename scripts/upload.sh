@@ -13,7 +13,7 @@ DEST="$1"
 REMOTE_DIR="~/services/dyyni_blackbox"
 
 rsync -avz --relative --ignore-missing-args --exclude='bin/' \
-    go/ \
+    server/ \
     .env \
     scripts/deploy_backend.sh \
     "$DEST:$REMOTE_DIR/"

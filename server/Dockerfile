@@ -4,11 +4,11 @@ WORKDIR /build
 COPY go.mod go.sum ./
 RUN go mod download
 COPY *.go ./
-RUN go build -o blackbox_go .
+RUN go build -o blackbox .
 
 FROM docker.io/library/alpine:latest
 
 RUN apk add --no-cache ca-certificates
-COPY --from=builder /build/blackbox_go /blackbox_go
-CMD ["/blackbox_go"]
+COPY --from=builder /build/blackbox /blackbox
+CMD ["/blackbox"]
 
